@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { ArrowRight, Award, BookOpen, CheckCircle2, ShieldCheck, Sparkles } from 'lucide-react';
 import { BADGES } from '../data/senaData';
 
@@ -25,6 +26,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   onOpenSimulator,
   onOpenCertificate,
 }) => {
+  const { t } = useTranslation();
   return (
     <section className="relative overflow-hidden bg-white dark:bg-slate-900/70 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
@@ -32,20 +34,19 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           {/* Left Column: Heading and Value proposition */}
           <div className="lg:col-span-7 space-y-6">
             <div className="inline-flex items-center gap-2 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-              <span className="text-[#FC7323] font-bold">Servicio Nacional de Aprendizaje</span>
+              <span className="text-[#FC7323] font-bold">{t('hero.sena_tag', 'Servicio Nacional de Aprendizaje')}</span>
               <span aria-hidden="true">·</span>
-              <span>Inducción Integral 2026</span>
+              <span>{t('hero.induction_tag', 'Inducción Integral 2026')}</span>
               <span aria-hidden="true">·</span>
-              <span>Acuerdo 0009 de 2024 (Vigente)</span>
+              <span>{t('hero.accord_tag', 'Acuerdo 0009 de 2024 (Vigente)')}</span>
             </div>
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
-              Apropia tus derechos, deberes y el reglamento SENA con orgullo
+              {t('hero.title', 'Apropia tus derechos, deberes y el reglamento SENA con orgullo')}
             </h1>
 
             <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed">
-              Vive una experiencia de inducción interactiva y gamificada. Resuelve casos reales de convivencia,
-              supera los retos de formación y genera tu certificado oficial de inducción al completar el programa.
+              {t('hero.desc', 'Vive una experiencia de inducción interactiva y gamificada. Resuelve casos reales de convivencia, supera los retos de formación y genera tu certificado oficial de inducción al completar el programa.')}
             </p>
 
             {/* Quick action buttons */}
@@ -54,7 +55,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 onClick={onStartRoute}
                 className="inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold text-white bg-[#FC7323] hover:bg-[#e05e10] active:scale-[0.99] rounded-xl transition-all shadow-sm"
               >
-                <span>{completedLessonsCount > 0 ? 'Continuar Ruta de Formación' : 'Iniciar Inducción'}</span>
+                <span>{completedLessonsCount > 0 ? t('hero.btn_continue', 'Continuar Ruta de Formación') : t('hero.btn_start', 'Iniciar Inducción')}</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
 
@@ -63,7 +64,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 className="inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl transition-colors"
               >
                 <ShieldCheck className="w-4 h-4 text-[#39A900]" />
-                <span>Simulador de Casos</span>
+                <span>{t('hero.btn_sim', 'Simulador de Casos')}</span>
               </button>
 
               {isCertified && (
@@ -72,7 +73,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   className="inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold text-emerald-800 dark:text-emerald-200 bg-emerald-50 dark:bg-emerald-950/50 hover:bg-emerald-100 dark:hover:bg-emerald-900/60 border border-emerald-200 dark:border-emerald-800/80 rounded-xl transition-colors"
                 >
                   <Award className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-                  <span>Ver Mi Certificado</span>
+                  <span>{t('hero.btn_cert', 'Ver Mi Certificado')}</span>
                 </button>
               )}
             </div>

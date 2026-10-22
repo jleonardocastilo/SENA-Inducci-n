@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   LearnerProfile,
   DEFAULT_PROFILE,
@@ -33,6 +34,7 @@ import {
 } from 'lucide-react';
 
 export default function App() {
+  const { t } = useTranslation();
   // Authenticated Role state: 'aprendiz' | 'instructor' | null
   // If null, the dedicated RoleSelectionLanding page is presented first
   const [authenticatedRole, setAuthenticatedRole] = useState<'aprendiz' | 'instructor' | null>(() => {
@@ -374,10 +376,10 @@ export default function App() {
                     </div>
                     <div>
                       <h3 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white">
-                        Plan de Modernización de la Inducción SENA 2026
+                        {t('app.plan_badge', 'Plan de Modernización de la Inducción SENA 2026')}
                       </h3>
                       <p className="text-xs text-slate-500 dark:text-slate-400 hidden sm:block">
-                        Estructura pedagógica aprobada para la apropiación del Acuerdo 0009 de 2024 y certificación digital.
+                        {t('app.plan_sub', 'Estructura pedagógica aprobada para la apropiación del Acuerdo 0009 de 2024 y certificación digital.')}
                       </p>
                     </div>
                   </div>
@@ -386,7 +388,7 @@ export default function App() {
                     onClick={() => setShowPlanBanner(!showPlanBanner)}
                     className="text-xs font-semibold text-[#FC7323] hover:text-[#e05e10] flex items-center gap-1 shrink-0"
                   >
-                    <span>{showPlanBanner ? 'Ocultar Plan' : 'Ver Plan Estructurado'}</span>
+                    <span>{showPlanBanner ? t('app.plan_hide', 'Ocultar Plan') : t('app.plan_show', 'Ver Plan Estructurado')}</span>
                     <ChevronRight className={`w-3.5 h-3.5 transition-transform ${showPlanBanner ? 'rotate-90' : ''}`} />
                   </button>
                 </div>
@@ -486,16 +488,15 @@ export default function App() {
             <div className="space-y-3">
               <div className="flex items-center gap-2">
                 <SenaEmblem size={24} />
-                <span className="font-bold text-slate-900 dark:text-white text-sm">SENA Colombia</span>
+                <span className="font-bold text-slate-900 dark:text-white text-sm">{t('app.footer_col1_title', 'SENA Colombia')}</span>
               </div>
               <p className="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">
-                Servicio Nacional de Aprendizaje. Entidad pública que invierte en el desarrollo social y técnico
-                de los trabajadores colombianos.
+                {t('app.footer_col1_desc', 'Servicio Nacional de Aprendizaje. Entidad pública que invierte en el desarrollo social y técnico de los trabajadores colombianos.')}
               </p>
             </div>
 
             <div>
-              <p className="font-semibold text-slate-900 dark:text-white mb-2">Canales Institucionales</p>
+              <p className="font-semibold text-slate-900 dark:text-white mb-2">{t('app.footer_col2_title', 'Canales Institucionales')}</p>
               <ul className="space-y-1.5 text-xs text-slate-600 dark:text-slate-300">
                 <li><a href="https://www.sena.edu.co" target="_blank" rel="noopener noreferrer" className="hover:text-[#FC7323]">Portal Oficial SENA</a></li>
                 <li><a href="https://oferta.senasofiaplus.edu.co" target="_blank" rel="noopener noreferrer" className="hover:text-[#FC7323]">SOFIA Plus</a></li>
@@ -505,7 +506,7 @@ export default function App() {
             </div>
 
             <div>
-              <p className="font-semibold text-slate-900 dark:text-white mb-2">Marco Legal y Convivencia</p>
+              <p className="font-semibold text-slate-900 dark:text-white mb-2">{t('app.footer_col3_title', 'Marco Legal y Convivencia')}</p>
               <ul className="space-y-1.5 text-xs text-slate-600 dark:text-slate-300">
                 <li><span>Acuerdo 0009 de 2024 (Reglamento Vigente)</span></li>
                 <li><span>Ley 119 de 1994 (Reestructuración SENA)</span></li>
@@ -515,11 +516,11 @@ export default function App() {
             </div>
 
             <div>
-              <p className="font-semibold text-slate-900 dark:text-white mb-2">Acreditación</p>
+              <p className="font-semibold text-slate-900 dark:text-white mb-2">{t('app.footer_col4_title', 'Acreditación')}</p>
               <div className="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-lg border border-slate-200 dark:border-slate-700/60 space-y-1">
-                <p className="text-slate-800 dark:text-slate-200 font-semibold">Inducción Acreditada: 40 Horas</p>
+                <p className="text-slate-800 dark:text-slate-200 font-semibold">{t('app.footer_hours', 'Inducción Acreditada: 40 Horas')}</p>
                 <p className="text-[11px] text-slate-500 dark:text-slate-400">
-                  Válida para el cumplimiento del requisito de matrícula e inicio de la etapa lectiva.
+                  {t('app.footer_valid', 'Válida para el cumplimiento del requisito de matrícula e inicio de la etapa lectiva.')}
                 </p>
               </div>
             </div>
@@ -527,15 +528,15 @@ export default function App() {
 
           <div className="pt-6 border-t border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
             <p className="text-[11px] text-slate-500 dark:text-slate-400">
-              © 2026 Servicio Nacional de Aprendizaje SENA · República de Colombia · Formación Profesional Integral Gratuita.
+              {t('app.footer_copy', '© 2026 Servicio Nacional de Aprendizaje SENA · República de Colombia · Formación Profesional Integral Gratuita.')}
             </p>
             <div className="flex items-center gap-4 text-[11px] text-slate-500 dark:text-slate-400">
               <button onClick={() => setIsVerifierOpen(true)} className="hover:text-slate-900 dark:hover:text-white transition-colors">
-                Verificador de Certificados
+                {t('app.footer_verifier', 'Verificador de Certificados')}
               </button>
               <span aria-hidden="true">·</span>
               <button onClick={() => setIsAssistantOpen(true)} className="hover:text-slate-900 dark:hover:text-white transition-colors">
-                Tutor Sofía
+                {t('app.footer_assistant', 'Tutor Sofía')}
               </button>
             </div>
           </div>

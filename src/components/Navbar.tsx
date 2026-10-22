@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { SenaEmblem } from './SenaEmblem';
 import {
   User,
@@ -49,6 +50,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onSwitchToLearner,
   onLogoutToLanding
 }) => {
+  const { t } = useTranslation();
   const [copiedLink, setCopiedLink] = React.useState(false);
 
   const handleCopyLearnerLink = () => {
@@ -73,10 +75,10 @@ export const Navbar: React.FC<NavbarProps> = ({
               <SenaEmblem size={57} className="w-[57px] h-[57px] shrink-0 transition-transform group-hover:scale-105" />
               <div className="flex flex-col hidden sm:flex">
                 <span className="text-xl font-bold text-slate-900 dark:text-white tracking-tight whitespace-nowrap">
-                  SENA <span className="text-[#FC7323]">Inducción</span>
+                  {t('navbar.brand', 'SENA')} <span className="text-[#FC7323]">{t('navbar.brand_sub', 'Inducción')}</span>
                 </span>
                 <span className="text-[10px] text-slate-400 font-mono tracking-wider uppercase">
-                  Acuerdo 0009 de 2024
+                  {t('navbar.accord', 'Acuerdo 0009 de 2024')}
                 </span>
               </div>
             </button>
@@ -86,12 +88,12 @@ export const Navbar: React.FC<NavbarProps> = ({
               {userRole === 'instructor' ? (
                 <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-bold text-[11px] border border-emerald-300 dark:border-emerald-800">
                   <ShieldCheck className="w-3.5 h-3.5" />
-                  <span>Modo Instructor</span>
+                  <span>{t('navbar.mode_instructor', 'Modo Instructor')}</span>
                 </span>
               ) : (
                 <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium text-[11px]">
                   <GraduationCap className="w-3.5 h-3.5 text-[#FC7323]" />
-                  <span>Modo Aprendiz</span>
+                  <span>{t('navbar.mode_learner', 'Modo Aprendiz')}</span>
                 </span>
               )}
             </div>
@@ -109,7 +111,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 }`}
               >
                 <Users className="w-4 h-4" />
-                <span>Panel</span>
+                <span>{t('navbar.tab_panel', 'Panel')}</span>
               </button>
             )}
 
@@ -121,7 +123,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   : 'hover:text-slate-900 dark:hover:text-white'
               }`}
             >
-              Ruta
+              {t('navbar.tab_route', 'Ruta')}
             </button>
 
             <button
@@ -132,7 +134,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   : 'hover:text-slate-900 dark:hover:text-white'
               }`}
             >
-              Reglamento
+              {t('navbar.tab_reg', 'Reglamento')}
             </button>
 
             <button
@@ -143,7 +145,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   : 'hover:text-slate-900 dark:hover:text-white'
               }`}
             >
-              Simulador
+              {t('navbar.tab_sim', 'Simulador')}
             </button>
 
             <button
@@ -154,7 +156,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   : 'hover:text-slate-900 dark:hover:text-white'
               }`}
             >
-              Evaluación
+              {t('navbar.tab_eval', 'Evaluación')}
             </button>
 
             <button
@@ -165,7 +167,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   : 'hover:text-slate-900 dark:hover:text-white'
               }`}
             >
-              <span>Certificado</span>
+              <span>{t('navbar.tab_cert', 'Certificado')}</span>
               {isCertified && (
                 <span className="w-2 h-2 rounded-full bg-emerald-500" title="Certificado desbloqueado" />
               )}
@@ -183,7 +185,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   title="Copiar enlace limpio para enviar a los aprendices"
                 >
                   {copiedLink ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <LinkIcon className="w-3.5 h-3.5 text-[#39A900]" />}
-                  <span>{copiedLink ? '¡Link Copiado!' : 'Link Aprendices'}</span>
+                  <span>{copiedLink ? t('navbar.btn_copied_link', '¡Link Copiado!') : t('navbar.btn_copy_link', 'Link Aprendices')}</span>
                 </button>
 
                 {/* Google Drive Button (VISIBLE ONLY FOR INSTRUCTOR) */}
@@ -193,7 +195,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   title="Administrar Hoja de Cálculo en Google Drive"
                 >
                   <FileSpreadsheet className="w-3.5 h-3.5" />
-                  <span className="hidden sm:inline">Google Drive</span>
+                  <span className="hidden sm:inline">{t('navbar.btn_drive', 'Google Drive')}</span>
                 </button>
 
                 <button
@@ -202,7 +204,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   title="Cambiar a la vista que ven los aprendices"
                 >
                   <GraduationCap className="w-3.5 h-3.5 text-[#FC7323]" />
-                  <span className="hidden md:inline">Vista Aprendiz</span>
+                  <span className="hidden md:inline">{t('navbar.btn_learner_view', 'Vista Aprendiz')}</span>
                 </button>
 
                 {onLogoutToLanding && (
@@ -212,7 +214,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     title="Salir de la sesión de Instructor / Cambiar de Rol"
                   >
                     <LogOut className="w-3.5 h-3.5 text-rose-600" />
-                    <span className="hidden md:inline">Salir</span>
+                    <span className="hidden md:inline">{t('navbar.btn_exit', 'Salir')}</span>
                   </button>
                 )}
               </>
@@ -225,7 +227,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   title="Consultar al Tutor Sofía"
                 >
                   <Sparkles className="w-3.5 h-3.5 text-[#FC7323]" />
-                  <span>Tutor Sofía</span>
+                  <span>{t('navbar.btn_assistant', 'Tutor Sofía')}</span>
                 </button>
 
                 <button
@@ -245,7 +247,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     title="Salir o cambiar de rol"
                   >
                     <LogOut className="w-3.5 h-3.5 text-[#FC7323]" />
-                    <span className="hidden md:inline">Salir</span>
+                    <span className="hidden md:inline">{t('navbar.btn_exit', 'Salir')}</span>
                   </button>
                 )}
 
@@ -256,7 +258,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   title="Acceso exclusivo para Instructores (Clave SENA1234)"
                 >
                   <ShieldCheck className="w-3.5 h-3.5 text-[#39A900]" />
-                  <span className="hidden md:inline">Soy Instructor</span>
+                  <span className="hidden md:inline">{t('navbar.btn_i_am_instructor', 'Soy Instructor')}</span>
                 </button>
               </>
             )}
@@ -288,7 +290,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               currentTab === 'instructor' ? 'bg-[#39A900] text-white' : 'text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60'
             }`}
           >
-            Panel Instructor
+            {t('navbar.tab_panel', 'Panel')}
           </button>
         )}
         <button
@@ -297,7 +299,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             currentTab === 'modules' ? 'bg-[#FC7323] text-white' : 'text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800'
           }`}
         >
-          Ruta
+          {t('navbar.tab_route', 'Ruta')}
         </button>
         <button
           onClick={() => setCurrentTab('regulation')}
@@ -305,7 +307,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             currentTab === 'regulation' ? 'bg-[#FC7323] text-white' : 'text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800'
           }`}
         >
-          Reglamento
+          {t('navbar.tab_reg', 'Reglamento')}
         </button>
         <button
           onClick={() => setCurrentTab('simulator')}
@@ -313,7 +315,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             currentTab === 'simulator' ? 'bg-[#FC7323] text-white' : 'text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800'
           }`}
         >
-          Simulador
+          {t('navbar.tab_sim', 'Simulador')}
         </button>
         <button
           onClick={() => setCurrentTab('evaluation')}
@@ -321,7 +323,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             currentTab === 'evaluation' ? 'bg-[#FC7323] text-white' : 'text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800'
           }`}
         >
-          Evaluación
+          {t('navbar.tab_eval', 'Evaluación')}
         </button>
         <button
           onClick={() => setCurrentTab('certificate')}
@@ -329,7 +331,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             currentTab === 'certificate' ? 'bg-[#FC7323] text-white' : 'text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800'
           }`}
         >
-          Certificado
+          {t('navbar.tab_cert', 'Certificado')}
         </button>
 
         {userRole === 'instructor' && (
@@ -349,7 +351,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             title="Salir / Cambiar Rol"
           >
             <LogOut className="w-3 h-3 text-rose-500" />
-            <span>Salir</span>
+            <span>{t('navbar.btn_exit', 'Salir')}</span>
           </button>
         )}
       </div>
