@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  html {
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #0f172a;
+    background-color: #f8fafc;
+    scroll-behavior: smooth;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  html.dark {
+    color: #f1f5f9;
+    background-color: #0b1120;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Atmospheric blur animations and effects for dark mode */
+@keyframes darkBlurPulse {
+  0% {
+    backdrop-filter: blur(0px);
+    background-color: rgba(11, 17, 32, 0);
+  }
+  35% {
+    backdrop-filter: blur(14px);
+    background-color: rgba(11, 17, 32, 0.25);
+  }
+  100% {
+    backdrop-filter: blur(0px);
+    background-color: rgba(11, 17, 32, 0);
+  }
+}
+
+.dark-mode-blur-transition {
+  animation: darkBlurPulse 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  pointer-events: none;
+}
+
+
+/* Print configuration specifically tailored for official SENA certificate printing */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only-certificate {
+    display: block !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  @page {
+    size: letter landscape;
+    margin: 1cm;
+  }
+}
+
