@@ -13,6 +13,7 @@ import {
   Check,
   LogOut
 } from 'lucide-react';
+import { LanguageSwitcher } from './LanguageSwitcher';
 import { LearnerProfile } from '../data/senaData';
 
 interface NavbarProps {
@@ -261,6 +262,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             )}
 
             {/* Dark Mode Toggle Button */}
+            <LanguageSwitcher />
             <button
               onClick={onToggleDarkMode}
               aria-label={isDarkMode ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}

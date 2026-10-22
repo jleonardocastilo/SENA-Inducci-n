@@ -18,6 +18,7 @@ import {
   Video
 } from 'lucide-react';
 import { VideoModal } from './VideoModal';
+import { LanguageSwitcher } from './LanguageSwitcher';
 import { LearnerProfile, DEFAULT_PROFILE } from '../data/senaData';
 
 interface RoleSelectionLandingProps {
@@ -125,6 +126,7 @@ export const RoleSelectionLanding: React.FC<RoleSelectionLandingProps> = ({
             >
               <Video className="w-5 h-5" />
             </button>
+            <LanguageSwitcher />
             <button
               onClick={onToggleDarkMode}
               aria-label={isDarkMode ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
